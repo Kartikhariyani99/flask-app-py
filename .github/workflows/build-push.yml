@@ -13,10 +13,20 @@ jobs:
                 - name: checkout code
                   uses: actions/checkout@v4
 
+                - name: resolve docker username
+                  id: docker_username
+                  run: |
+                    USERNAME="${{ vars.DOCKER_USERNAME }}"
+                    USERNAME="$(echo "$USERNAME" | tr -d '[:space:]')"
+                    if [ -z "$USERNAME" ]; then
+                      USERNAME="${{ github.repository_owner }}"
+                    fi
+                    echo "value=$USERNAME" >> "$GITHUB_OUTPUT"
+
                 - name: docker login
                   uses: docker/login-action@v3
                   with:
-                    username: ${{ vars.DOCKER_USERNAME }}
+                    username: ${{ steps.docker_username.outputs.value }}
                     password: ${{ secrets.DOCKERHUB_TOKEN }}
 
                 - name: docker build and push
@@ -24,9 +34,8 @@ jobs:
                   with: 
                     context: .
                     push: true
-                    tags: ${{ vars.DOCKER_USERNAME }}/flask-app
+                    tags: ${{ steps.docker_username.outputs.value }}/flask-app
                 
-
 
 
 
