@@ -22,6 +22,6 @@ jobs:
                     context: .
                     push: True
                     tag: ${{ DOCKER_USERNAME }}/flask-app:latest 
-                # if i want add multiline then add | 
+                
 
 
