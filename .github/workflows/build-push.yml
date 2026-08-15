@@ -23,8 +23,8 @@ jobs:
                   uses: docker/build-push-action@v6
                   with: 
                     context: .
-                    push: True
-                    tag: ${{ vars.DOCKER_USERNAME }}/flask-app:latest 
+                    push: true
+                    tags: ${{ vars.DOCKER_USERNAME }}/flask-app:latest 
                 
 
 
