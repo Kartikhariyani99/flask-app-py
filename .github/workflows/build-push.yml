@@ -24,8 +24,9 @@ jobs:
                   with: 
                     context: .
                     push: true
-                    tags: ${{ vars.DOCKER_USERNAME }}/flask-app
-                
+                    tags:  |
+                        ${{ vars.DOCKER_USERNAME }}/flask-app:latest   
+                        ${{ vars.DOCKER_USERNAME }}/flask-app:${{ github.ref_name }}
 
 
 
