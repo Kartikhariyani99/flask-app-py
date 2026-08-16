@@ -9,6 +9,8 @@ jobs:
         build-and-push: 
             
             runs-on: ubuntu-latest
+            env:
+                DOCKER_USERNAME: ${{ vars.DOCKER_USERNAME }}
             steps:
                 - name: checkout code
                   uses: actions/checkout@v4
