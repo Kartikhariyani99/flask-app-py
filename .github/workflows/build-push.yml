@@ -24,7 +24,7 @@ jobs:
                   with: 
                     context: .
                     push: true
-                    tags: flask-app:latest
+                    tags: ${{ vars.DOCKER_USERNAME }}/flask-app:latest
 
 
 
