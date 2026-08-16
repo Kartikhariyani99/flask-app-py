@@ -20,9 +20,7 @@ jobs:
                   with:
                     username: ${{ vars.DOCKER_USERNAME }}
                     password: ${{ secrets.DOCKERHUB_TOKEN }}
-                - name: errr
-                  run: echo "$[{{ vars.DOCKER_USERNAME }}]"
-
+                
                 - name: docker build and push
                   uses: docker/build-push-action@v6
                   with: 
