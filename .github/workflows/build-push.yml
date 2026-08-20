@@ -1,30 +1,27 @@
 name: docker build & push
 
-on: 
-    workflow_dispatch: 
+on:
+  workflow_call: 
+
 jobs:
+  build-and-push: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v6
 
-        build-and-push: 
-            
-            runs-on: ubuntu-latest
-            #env:
+      - name: docker login
+        uses: docker/login-action@v4
+        with:
+          username: ${{ vars.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
                 
-            steps:
-                - name: checkout code
-                  uses: actions/checkout@v6
-
-                - name: docker login
-                  uses: docker/login-action@v3
-                  with:
-                    username: ${{ vars.DOCKERHUB_USER }}
-                    password: ${{ secrets.DOCKERHUB_TOKEN }}
-                
-                - name: docker build and push
-                  uses: docker/build-push-action@v6
-                  with: 
-                    context: .
-                    push: true
-                    tags: ${{ vars.DOCKERHUB_USER }}/flask-app:latest
+      - name: docker build and push
+        uses: docker/build-push-action@v6
+        with: 
+          context: .
+          push: true
+          tags: ${{ vars.DOCKERHUB_USER }}/flask-app:latest
 
 
 
