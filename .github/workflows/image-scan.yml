@@ -8,7 +8,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: dockerhub login
-              uses: docker/action-login@v4
+              uses: docker/login-action@v4
               with:
                 username: ${{vars.DOCKERHUB_USER}}
                 password: ${{secrets.GITHUB_TOKEN}}
