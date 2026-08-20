@@ -3,16 +3,19 @@ name: devsecops end to end
 on:
     workflow_dispatch:
 jobs:
-    code-qulity:
+    code-quality:
         uses: ./.github/workflows/code-quality.yml
     
     secrets:
         uses: ./.github/workflows/secrets-scan.yml
     
-    deppendency:
+    dependency:
         uses: ./.github/workflows/dependency-scan.yml
     
     docker-scan:
         uses: ./.github/workflows/docker-lint.yml
 
-    
+    build:
+        needs: [code-quality, secrets, dependency, docker-scan]
+        uses: ./.github/workflows/build-push.yml
+        secrets: inherit
