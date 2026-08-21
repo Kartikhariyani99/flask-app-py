@@ -8,7 +8,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Execute Remote SSH Commands
-              uses: appleboy/ssh-action@v1.0.3
+              uses: appleboy/ssh-action@v1
               with:
                 host: ${{ secrets.EC2_SSH_HOST }}
                 username: ${{ secrets.EC2_SSH_USERNAME }}
