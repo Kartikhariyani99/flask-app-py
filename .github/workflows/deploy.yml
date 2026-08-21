@@ -2,7 +2,6 @@ name: deploy to server
 
 on:
     workflow_call:
-    workflow_dispatch:
 
 jobs:
     deploy:
@@ -16,4 +15,4 @@ jobs:
                 key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
                 script: |
                     echo " deploy start"
-                    mkdir devops
+                    mkdir -p devops
