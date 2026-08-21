@@ -16,6 +16,6 @@ jobs:
             - name: Run Trivy vulnerability scanner in fs mode
               uses: aquasecurity/trivy-action@v0.36.0
               with:
-                image-ref: 'flask-app:latest'
+                image-ref: '${{ vars.DOCKERHUB_USER }}/flask-app:latest'
                 severity: CRITICAL
                 exit-code: 1    
