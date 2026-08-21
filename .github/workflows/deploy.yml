@@ -2,6 +2,7 @@ name: deploy to server
 
 on:
     workflow_call:
+    workflow_dispatch:
 
 jobs:
     deploy:
